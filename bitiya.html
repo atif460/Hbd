@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPPY BIRTHDAY IQRA♥️ - THE MAN HATER 😂</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(to bottom,#ffd1dc,#ffc0cb);
+    text-align:center;
+    overflow-x:hidden;
+}
+
+h1{
+    color:black;
+    margin:20px 10px;
+    font-size:26px;
+}
+
+.card{
+    background:white;
+    margin:15px;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+#countdown{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.gift{
+    font-size:80px;
+    cursor:pointer;
+}
+
+#cake{
+    display:none;
+    font-size:90px;
+    margin-top:10px;
+    animation:pop 1s ease;
+}
+
+@keyframes pop{
+    0%{transform:scale(0);}
+    100%{transform:scale(1);}
+}
+
+#note{
+    display:none;
+    font-size:18px;
+    font-weight:600;
+}
+
+.slideshow{
+    display:none;
+}
+
+.slide{
+    display:none;
+    font-size:24px;
+    font-weight:600;
+    padding:10px;
+}
+
+/* Rose petals */
+.petal{
+    position:fixed;
+    top:-20px;
+    font-size:22px;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(100vh) rotate(360deg);opacity:0;}
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:black;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>HAPPY BIRTHDAY IQRA♥️ - THE MAN HATER 😂</h1>
+
+<div class="card">
+    <div id="countdown">Loading...</div>
+</div>
+
+<div class="card">
+    <div class="gift" onclick="openGift()">🎁</div>
+    <div>Click here cutie</div>
+    <div id="cake">🎂</div>
+</div>
+
+<div class="card">
+    <button id="previewBtn" onclick="showSurprise()">Preview Surprise</button>
+</div>
+
+<div class="card" id="note">
+    Hamesha khush rahiye 🤍<br>
+    Allah apne hifzo Amal mei rakhe
+</div>
+
+<div class="card slideshow" id="slideshow">
+    <div class="slide">🎉 Happy Birthday Sweetheart 🎉</div>
+    <div class="slide">💖 Enjoy the day cutie 💖</div>
+    <div class="slide">🌹🌹🌹🌹🌹</div>
+    <div class="slide">te amo beautiful 🤍</div>
+</div>
+
+<script>
+const target = new Date("January 22, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if(diff<=0){
+        document.getElementById("countdown").innerHTML="🎊 Happy Birthday Iqra 🎊";
+        document.getElementById("previewBtn").style.display="none";
+        showSurprise();
+        return;
+    }
+
+    let d=Math.floor(diff/(1000*60*60*24));
+    let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    let m=Math.floor((diff%(1000*60*60))/(1000*60));
+    let s=Math.floor((diff%(1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML=
+    `${d}d ${h}h ${m}m ${s}s`;
+},1000);
+
+function openGift(){
+    document.getElementById("cake").style.display="block";
+}
+
+function showSurprise(){
+    document.getElementById("note").style.display="block";
+    document.getElementById("slideshow").style.display="block";
+    startSlideshow();
+    startPetals();
+}
+
+let i=0;
+function startSlideshow(){
+    let slides=document.getElementsByClassName("slide");
+    for(let j=0;j<slides.length;j++) slides[j].style.display="none";
+    i++; if(i>slides.length) i=1;
+    slides[i-1].style.display="block";
+    setTimeout(startSlideshow,2500);
+}
+
+function startPetals(){
+    setInterval(()=>{
+        const petal=document.createElement("div");
+        petal.className="petal";
+        petal.innerHTML="🌸";
+        petal.style.left=Math.random()*window.innerWidth+"px";
+        document.body.appendChild(petal);
+        setTimeout(()=>petal.remove(),6000);
+    },300);
+}
+</script>
+
+</body>
+</html>
